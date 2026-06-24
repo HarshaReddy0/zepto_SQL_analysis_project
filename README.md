@@ -104,5 +104,5 @@ This project showcases end-to-end SQL-based data analysis, helping develop pract
 ### 🔗 GitHub Repository
 
 Add your repository link here:
-https://github.com/your-username/your-repository-name
+[https://github.com/HarshaReddy0/zepto_SQL_analysis_project.git]
  
