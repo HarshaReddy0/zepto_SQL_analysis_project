@@ -1,110 +1,108 @@
-# 🛒 Zepto E-commerce SQL Data Analyst Portfolio Project
+#  🛒 Zepto E-Commerce SQL Data Analysis Project
 
-This is a complete, real-world data analyst portfolio project based on an e-commerce inventory dataset scraped from Zepto — one of India’s fastest-growing quick-commerce startups. This project simulates real analyst workflows, from raw data exploration to business-focused data analysis.
+## 📌 Project Overview
 
+This project is a real-world SQL Data Analytics case study based on Zepto's e-commerce inventory dataset. It demonstrates how data analysts work with raw business data to perform data exploration, cleaning, and business analysis using SQL.
+
+The project focuses on analyzing product inventory, pricing, discounts, stock availability, and revenue opportunities to generate actionable business insights.
 <img width="961" height="649" alt="image" src="https://github.com/user-attachments/assets/cbc1d618-7d27-460a-8d51-a8813cb3b49d" />
 
+## 🎯 Objectives
 
-📌 Project Overview
-The goal is to simulate how actual data analysts in the e-commerce or retail industries work behind the scenes to use SQL to:
+* Build and manage an e-commerce inventory database.
+* Perform Exploratory Data Analysis (EDA).
+* Clean and transform raw inventory data.
+* Generate business insights using SQL queries.
+* Practice real-world data analyst workflows.
 
-✅ Set up a messy, real-world e-commerce inventory database
+## 📂 Dataset Information
 
-✅ Perform Exploratory Data Analysis (EDA) to explore product categories, availability, and pricing inconsistencies
+The dataset contains product inventory data scraped from Zepto's product listings. Each record represents a unique SKU (Stock Keeping Unit) with details such as:
 
-✅ Implement Data Cleaning to handle null values, remove invalid entries, and convert pricing from paise to rupees
+* SKU ID
+* Product Name
+* Category
+* MRP (₹)
+* Discount Percentage
+* Selling Price (₹)
+* Available Quantity
+* Product Weight
+* Stock Status
+* Package Quantity
 
-✅ Write business-driven SQL queries to derive insights around pricing, inventory, stock availability, revenue and more
+## 🛠️ Project Workflow
 
-📁 Dataset Overview
-The dataset was sourced from Kaggle and was originally scraped from Zepto’s official product listings. It mimics what you’d typically encounter in a real-world e-commerce inventory system.
+### 1. Database and Table Creation
 
-Each row represents a unique SKU (Stock Keeping Unit) for a product. Duplicate product names exist because the same product may appear multiple times in different package sizes, weights, discounts, or categories to improve visibility – exactly how real catalog data looks.
-
-🧾 Columns:
-
-sku_id: Unique identifier for each product entry (Synthetic Primary Key)
-name: Product name as it appears on the app
-category: Product category like Fruits, Snacks, Beverages, etc.
-mrp: Maximum Retail Price (originally in paise, converted to ₹)
-discountPercent: Discount applied on MRP
-discountedSellingPrice: Final price after discount (also converted to ₹)
-availableQuantity: Units available in inventory
-weightInGms: Product weight in grams
-outOfStock: Boolean flag indicating stock availability
-quantity: Number of units per package (mixed with grams for loose produce)
-
-🔧 Project Workflow
-Here’s a step-by-step breakdown of what we do in this project:
-
-1. Database & Table Creation
-We start by creating a SQL table with appropriate data types:
-
-CREATE TABLE zepto (
-  sku_id SERIAL PRIMARY KEY,
-  category VARCHAR(120),
-  name VARCHAR(150) NOT NULL,
-  mrp NUMERIC(8,2),
-  discountPercent NUMERIC(5,2),
-  availableQuantity INTEGER,
-  discountedSellingPrice NUMERIC(8,2),
-  weightInGms INTEGER,
-  outOfStock BOOLEAN,
-  quantity INTEGER
+* Designed and created a PostgreSQL database.
+* Defined appropriate data types and constraints.
+* CREATE TABLE zepto (
+sku_id SERIAL PRIMARY KEY,
+category VARCHAR(120),
+name VARCHAR(150) NOT NULL,
+mrp NUMERIC(8,2),
+discountPercent NUMERIC(5,2),
+availableQuantity INTEGER,
+discountedSellingPrice NUMERIC(8,2),
+weightInGms INTEGER,
+outOfStock BOOLEAN,
+quantity INTEGER
 );
 
-2. Data Import
-Loaded CSV using pgAdmin's import feature.
+### 2. Data Import
 
-If you're not able to use the import feature, write this code instead:
+* Imported CSV data into PostgreSQL.
+* Resolved UTF-8 encoding issues for successful data loading.
 
-   \copy zepto(category,name,mrp,discountPercent,availableQuantity,
-            discountedSellingPrice,weightInGms,outOfStock,quantity)
-  FROM 'data/zepto_v2.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', QUOTE '"', ENCODING 'UTF8');
-Faced encoding issues (UTF-8 error), which were fixed by saving the CSV file using CSV UTF-8 format.
+### 3. Exploratory Data Analysis (EDA)
 
-3. 🔍 Data Exploration
-Counted the total number of records in the dataset
-Viewed a sample of the dataset to understand structure and content
-Checked for null values across all columns
-Identified distinct product categories available in the dataset
-Compared in-stock vs out-of-stock product counts
-Detected products present multiple times, representing different SKUs
+* Analyzed total records and product categories.
+* Identified null values and duplicate products.
+* Compared in-stock and out-of-stock inventory.
+* Explored product distribution across categories.
 
-4. 🧹 Data Cleaning
-Identified and removed rows where MRP or discounted selling price was zero
+### 4. Data Cleaning
 
-Converted mrp and discountedSellingPrice from paise to rupees for consistency and readability
+* Removed invalid records with zero pricing.
+* Converted prices from paise to rupees.
+* Improved data consistency and quality.
 
-5. 📊 Business Insights
-> Found top 10 best-value products based on discount percentage
-> Identified high-MRP products that are currently out of stock
-> Estimated potential revenue for each product category
-> Filtered expensive products (MRP > ₹500) with minimal discount
-> Ranked top 5 categories offering highest average discounts
-> Calculated price per gram to identify value-for-money products
-> Grouped products based on weight into Low, Medium, and Bulk categories
-> Measured total inventory weight per product category
+### 5. Business Analysis
 
-🛠️ How to Use This Project
-Clone the repository
+Generated valuable business insights such as:
 
-git clone https://github.com/amlanmohanty/zepto-SQL-data-analysis-project.git
-cd zepto-SQL-data-analysis-project
+* Top 10 highest discounted products
+* High-value products currently out of stock
+* Category-wise potential revenue analysis
+* Products with low discounts despite high MRP
+* Categories offering the best average discounts
+* Price-per-gram analysis for value products
+* Product segmentation based on weight
+* Inventory weight distribution across categories
 
-Open zepto_SQL_data_analysis.sql
+## 📊 Key Skills Demonstrated
 
-This file contains:
+* SQL Queries
+* Data Cleaning
+* Data Transformation
+* Exploratory Data Analysis (EDA)
+* Business Analytics
+* PostgreSQL
+* Inventory Analysis
+* Revenue Analysis
 
-Table creation
-Data exploration
-Data cleaning
-SQL Business analysis
+## 🚀 Tools Used
 
-Load the dataset into pgAdmin or any other PostgreSQL client
+* PostgreSQL
+* pgAdmin
+* SQL
 
-Create a database and run the SQL file
+## 📈 Outcome
 
-Import the dataset (convert to UTF-8 if necessary)
+This project showcases end-to-end SQL-based data analysis, helping develop practical skills in data cleaning, querying, and business intelligence using a real-world e-commerce dataset.
 
-Follow along with the YouTube video for full walkthrough. 👨‍💼
+### 🔗 GitHub Repository
+
+Add your repository link here:
+https://github.com/your-username/your-repository-name
+ 
